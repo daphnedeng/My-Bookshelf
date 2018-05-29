@@ -34,8 +34,7 @@ class ReadingBooks extends Component {
           </TabList>
 
           <TabPanel>
-            {/* the state of books should be same as the state of shelf */}
-            <BookList />
+            <BookList books={this.state.books}/>
           </TabPanel>
           <TabPanel>
             Books Going to read
