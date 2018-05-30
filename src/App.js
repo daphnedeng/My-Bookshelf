@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import BookList from './BookList';
+import Bookshelf from './BookShelf';
 import './App.css';
 import { Route } from "react-router-dom";
 
@@ -34,7 +34,7 @@ class ReadingBooks extends Component {
           </TabList>
 
           <TabPanel>
-            <BookList books={this.state.books}/>
+            <Bookshelf books={this.state.books}/>
           </TabPanel>
           <TabPanel>
             Books Going to read
