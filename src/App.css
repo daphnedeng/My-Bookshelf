@@ -21,8 +21,26 @@
   font-size: large;
 }
 
-.book-cover {
-  background-repeat: no-repeat;
-  background-size: contain;
-  
+.book-container {
+  width: 100%;
+  height: 100%;
 }
+
+.shelf-titles {
+  padding: 0;
+  list-style: none;
+  width: 390px;
+	margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  position:relative;
+}
+
+.book-shelf {
+  box-sizing: border-box;
+  float: left;
+  width: 130px;
+  line-height: 5;
+}
+
+

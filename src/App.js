@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Bookshelf from './BookShelf';
 import './App.css';
 import { Route } from "react-router-dom";
+import 'react-tabs/style/react-tabs.css';
 
 class ReadingBooks extends Component {
   state = {
@@ -27,10 +28,10 @@ class ReadingBooks extends Component {
           </nav>
         </header>
         <Tabs>
-          <TabList>
-            <Tab>Reading</Tab>
-            <Tab>Want To Read</Tab>
-            <Tab>Read</Tab>
+          <TabList className="shelf-titles">
+            <Tab className="book-shelf">Reading</Tab>
+            <Tab className="book-shelf">Want To Read</Tab>
+            <Tab className="book-shelf">Read</Tab>
           </TabList>
 
           <TabPanel>

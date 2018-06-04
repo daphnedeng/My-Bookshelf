@@ -7,6 +7,7 @@ class Bookshelf extends Component {
         return (
             <section>
                 {this.props.books.map((book) =>
+                    // .map() will render all books
                     <Books key={book.id} book={book}/>
                 )}
             </section>
