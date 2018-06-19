@@ -1,3 +1,5 @@
+/*App carries bookshelf*/
+
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -13,6 +15,7 @@ class ReadingBooks extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
+      // setState changes the state of books
       this.setState({
         books
       })
@@ -38,10 +41,12 @@ class ReadingBooks extends Component {
             <Bookshelf books={this.state.books}/>
           </TabPanel>
           <TabPanel>
-            Books Going to read
+            Books Going to read !! need to configure the state
+            <Bookshelf books={this.state.books}/>
           </TabPanel>
           <TabPanel>
-            I already read
+            I already read need to configure the state too!!
+            <Bookshelf books={this.state.books}/>
           </TabPanel>
         </Tabs> 
       </div>
