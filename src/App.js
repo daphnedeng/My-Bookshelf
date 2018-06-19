@@ -6,7 +6,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Bookshelf from './BookShelf';
 import './App.css';
 import { Route } from "react-router-dom";
-import 'react-tabs/style/react-tabs.css';
 
 class ReadingBooks extends Component {
   state = {
@@ -20,6 +19,11 @@ class ReadingBooks extends Component {
         books
       })
     })
+  }
+
+  //the function will filter book. return books which b.shelf === books[i]['shelf']
+  getBooks(onshelf) {
+    return this.state.books.filter((b) => b.shelf === onshelf)
   }
 
   render() {
@@ -38,15 +42,14 @@ class ReadingBooks extends Component {
           </TabList>
 
           <TabPanel>
-            <Bookshelf books={this.state.books}/>
+            {/* call the getBooks function, books with the respective 'shelfName' will show up */}
+            <Bookshelf books={this.getBooks('currentlyReading')}/>
           </TabPanel>
           <TabPanel>
-            Books Going to read !! need to configure the state
-            <Bookshelf books={this.state.books}/>
+            <Bookshelf books={this.getBooks('wantToRead')}/>
           </TabPanel>
           <TabPanel>
-            I already read need to configure the state too!!
-            <Bookshelf books={this.state.books}/>
+            <Bookshelf books={this.getBooks('read')}/>
           </TabPanel>
         </Tabs> 
       </div>
