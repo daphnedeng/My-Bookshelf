@@ -1,7 +1,7 @@
 /* render book info from API
  each book carries the changer */
 import React, { Component } from 'react';
-import ChangeShelf from './changeShelf';
+// import ChangeShelf from './changeShelf';
 
 class Books extends Component {
     render() {
@@ -14,7 +14,7 @@ class Books extends Component {
                     <p>Written By: {this.props.book.authors}</p>
                 </div> 
                 {/* when select an option, update the book accordingly */}
-                <ChangeShelf />
+                {/* <ChangeShelf /> */}
             </div>
         )
     }
