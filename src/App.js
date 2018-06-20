@@ -26,6 +26,15 @@ class ReadingBooks extends Component {
     return this.state.books.filter((b) => b.shelf === onshelf)
   }
 
+  changShelf = (targetBook, targetShelf) => {
+    BooksAPI.update(targetBook, targetShelf).then(() => {
+      targetBook.shelf = targetShelf;
+      this.setState((state) => ({
+        books: 
+      }))
+    })
+  }
+
   render() {
     return (
       <div className="App">

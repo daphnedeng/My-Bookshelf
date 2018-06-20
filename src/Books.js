@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 // import ChangeShelf from './changeShelf';
 
 class Books extends Component {
+    state = {};
+
     render() {
         return(
             <div className="book-container">
@@ -15,6 +17,13 @@ class Books extends Component {
                 </div> 
                 {/* when select an option, update the book accordingly */}
                 {/* <ChangeShelf /> */}
+                <select value="move" onChange={this.changeShelf}>
+                    <option value="move" disabled>Move to...</option>
+                    <option value="currentReads">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="remove">Remove this Book</option>
+                </select>
             </div>
         )
     }
