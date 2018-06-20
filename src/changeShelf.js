@@ -8,13 +8,9 @@ class ChangeShelf extends Component {
         currentShelf: this.props.book.shelf
     }
 
-    moveBook = (event) => {
-        this.setState({currentShelf: event.target.value})
-    }
-
     render() {
         return(
-            <select value={this.state.currentShelf} onChange={this.moveBook}>
+            <select value={this.state.currentShelf} onChange={this.changeShelf}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentReads">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
