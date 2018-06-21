@@ -26,11 +26,11 @@ class ReadingBooks extends Component {
     return this.state.books.filter((b) => b.shelf === onshelf)
   }
 
-  changShelf = (targetBook, targetShelf) => {
-    BooksAPI.update(targetBook, targetShelf).then(() => {
-      targetBook.shelf = targetShelf;
-      this.setState((state) => ({
-        books: 
+  changeShelf = (book, shelf) => {
+    BooksAPI.update({id: book.id}, shelf).then(() => {
+      book.shelf = shelf
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat(book)
       }))
     })
   }
@@ -52,13 +52,22 @@ class ReadingBooks extends Component {
 
           <TabPanel>
             {/* call the getBooks function, books with the respective 'shelfName' will show up */}
-            <Bookshelf books={this.getBooks('currentlyReading')}/>
+            <Bookshelf 
+              books={this.getBooks('currentlyReading')}
+              changeShelf={this.changeShelf}  
+            />
           </TabPanel>
           <TabPanel>
-            <Bookshelf books={this.getBooks('wantToRead')}/>
+            <Bookshelf 
+              books={this.getBooks('wantToRead')}
+              changeShelf={this.changeShelf} 
+            />
           </TabPanel>
           <TabPanel>
-            <Bookshelf books={this.getBooks('read')}/>
+            <Bookshelf 
+              books={this.getBooks('read')}
+              changeShelf={this.changeShelf} 
+            />
           </TabPanel>
         </Tabs> 
       </div>
