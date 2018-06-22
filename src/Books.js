@@ -1,7 +1,5 @@
-/* render book info from API
- each book carries the changer */
+/* render book info from API */
 import React, { Component } from 'react';
-// import ChangeShelf from './changeShelf';
 
 class Books extends Component {
     state = {};
