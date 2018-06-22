@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class Books extends Component {
     
     render() {
-
+        const { changeShelf } = this.props;
         return(
             <div className="book-container">
                 <div className="book-details">                
@@ -17,7 +17,7 @@ class Books extends Component {
                 </div> 
                 {/* when select an option, update the book accordingly */}
                 {/* <ChangeShelf changeShelf={changeShelf}/> */}
-                <select value={this.props.book.shelf} onChange={(e) => this.props.onChangeShelf(this.props.book, e.target.value)}>
+                <select value={this.props.book.shelf} onChange={changeShelf}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentReads">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
