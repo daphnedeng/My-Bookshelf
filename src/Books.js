@@ -1,12 +1,11 @@
-/* render book info from API
- each book carries the changer */
+/* render book info from API */
 import React, { Component } from 'react';
-//import ChangeShelf from './changeShelf';
 
 class Books extends Component {
     
     render() {
         const { changeShelf } = this.props;
+
         return(
             <div className="book-container">
                 <div className="book-details">                
@@ -15,9 +14,8 @@ class Books extends Component {
                     <p>Book Title: {this.props.book.title}. {this.props.book.subtitle}</p>
                     <p>Written By: {this.props.book.authors}</p>
                 </div> 
-                {/* when select an option, update the book accordingly */}
-                {/* <ChangeShelf changeShelf={changeShelf}/> */}
-                <select value={this.props.book.shelf} onChange={changeShelf}>
+
+                <select value={this.props.book.shelf} onChange={(e) => changeShelf(this.props.book, e.target.value)}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentReads">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

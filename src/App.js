@@ -22,14 +22,15 @@ class ReadingBooks extends Component {
   }
 
   //the function will filter book. return books which b.shelf === books[i]['shelf']
-  getBooks(onshelf) {
-    return this.state.books.filter((b) => b.shelf === onshelf)
+  getBooks(shelfName) {
+    return this.state.books.filter((b) => b.shelf === shelfName)
   }
 
-  changeShelf = (e) => {
-    BooksAPI.update({id: e.target.id}, e.target.value).then((response) => {
-      BooksAPI.getAll().then((books) => {
-        this.setState({books})
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf;
+      this.setState({
+        books: this.state.books.filter((b) => b.id !== book.id).concat(book)
       })
     })
   }
