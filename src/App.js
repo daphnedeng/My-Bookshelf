@@ -12,6 +12,7 @@ class ReadingBooks extends Component {
     books: []
   }
 
+  //render all books
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       // setState changes the state of books
@@ -21,11 +22,12 @@ class ReadingBooks extends Component {
     })
   }
 
-  //the function will filter book. return books which b.shelf === books[i]['shelf']
+  //this function will filter book. return books which have the respective 'shelfName'
   getBooks(shelfName) {
     return this.state.books.filter((b) => b.shelf === shelfName)
   }
 
+  //this function will update book base on its 'shelfName'
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf;

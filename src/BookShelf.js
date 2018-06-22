@@ -9,7 +9,7 @@ class Bookshelf extends Component {
         return (
             <section>                
                 {this.props.books.map((book) =>
-                    // .map() will render all books, for each book in books, showing a specific book info
+                    //.map() will render all books, for each book in books, showing a specific book info
                     <Books key={book.id} book={book} changeShelf={changeShelf} />
                 )}
             </section>

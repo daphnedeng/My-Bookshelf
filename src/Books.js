@@ -15,9 +15,10 @@ class Books extends Component {
                     <p>Written By: {this.props.book.authors}</p>
                 </div> 
 
+                {/* onChange function invokes, which changes book shelfName base on option value. This function lives in App.js*/}
                 <select value={this.props.book.shelf} onChange={(e) => changeShelf(this.props.book, e.target.value)}>
                     <option value="move" disabled>Move to...</option>
-                    <option value="currentReads">Currently Reading</option>
+                    <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
                     <option value="remove">Remove this Book</option>
