@@ -6,15 +6,22 @@ import React, { Component } from 'react';
 class Books extends Component {
     state = {};
 
+    // Implement changeShelf here
+    changeShelf = () => {
+        // booksAPI.update
+        // Call this.props.updateMain to force an update
+    }
+    
+
     render() {
-        return(
+        return (
             <div className="book-container">
-                <div className="book-details">                
-                {/* props: pass API data into component */}
-                    <img src={this.props.book.imageLinks.thumbnail} alt={`book cover of ${this.props.book.title}`}/>
+                <div className="book-details">
+                    {/* props: pass API data into component */}
+                    <img src={this.props.book.imageLinks.thumbnail} alt={`book cover of ${this.props.book.title}`} />
                     <p>Book Title: {this.props.book.title}. {this.props.book.subtitle}</p>
                     <p>Written By: {this.props.book.authors}</p>
-                </div> 
+                </div>
                 {/* when select an option, update the book accordingly */}
                 {/* <ChangeShelf /> */}
                 <select value="move" onChange={this.changeShelf}>
