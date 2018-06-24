@@ -1,11 +1,11 @@
-/*App carries bookshelf*/
-
+/* App carries bookshelf */
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Bookshelf from './BookShelf';
+import SearchBooks from './SearchBooks';
 import './App.css';
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 class ReadingBooks extends Component {
   state = {
@@ -28,11 +28,13 @@ class ReadingBooks extends Component {
   }
 
   //this function will update book base on its 'shelfName'
-  changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf = shelf;
+  changeShelf = (targetBook, targetShelf) => {
+    BooksAPI.update(targetBook, targetShelf).then(() => {
+      targetBook.shelf = targetShelf;
+      //after change targetBook's shelfName, update its state
       this.setState({
-        books: this.state.books.filter((b) => b.id !== book.id).concat(book)
+        //put the book to the end
+        books: this.state.books.filter((b) => b.id !== targetBook.id).concat(targetBook)
       })
     })
   }
@@ -40,29 +42,41 @@ class ReadingBooks extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <nav>
-            <h1>My Bookshelf</h1> 
-          </nav>
-        </header>
-        <Tabs>
-          <TabList className="shelf-titles">
-            <Tab className="book-shelf">Reading</Tab>
-            <Tab className="book-shelf">Want To Read</Tab>
-            <Tab className="book-shelf">Read</Tab>
-          </TabList>
+        {/* this is the bookshelf screen */}
+        <Route exact path="/" render={() => (
+          <section>
+            <header className="App-header">
+              <nav>
+                <h1>My Bookshelf</h1> 
+                <Link to="search_books" className="search-link">Search Books</Link>
+              </nav>
+            </header>
 
-          <TabPanel>
-            {/* call the getBooks function, books with the respective 'shelfName' will show up */}
-            <Bookshelf books={this.getBooks('currentlyReading')} changeShelf={this.changeShelf} />
-          </TabPanel>
-          <TabPanel>
-            <Bookshelf books={this.getBooks('wantToRead')} changeShelf={this.changeShelf} />
-          </TabPanel>
-          <TabPanel>
-            <Bookshelf books={this.getBooks('read')} changeShelf={this.changeShelf} />
-          </TabPanel>
-        </Tabs> 
+            <Tabs>
+              <TabList className="shelf-titles">
+                <Tab className="book-shelf">Reading</Tab>
+                <Tab className="book-shelf">Want To Read</Tab>
+                <Tab className="book-shelf">Read</Tab>
+              </TabList>
+
+              <TabPanel>
+                {/* call the getBooks function, books with the respective 'shelfName' will show up */}
+                <Bookshelf books={this.getBooks('currentlyReading')} changeShelf={this.changeShelf} />
+              </TabPanel>
+              <TabPanel>
+                <Bookshelf books={this.getBooks('wantToRead')} changeShelf={this.changeShelf} />
+              </TabPanel>
+              <TabPanel>
+                <Bookshelf books={this.getBooks('read')} changeShelf={this.changeShelf} />
+              </TabPanel>
+            </Tabs> 
+          </section> 
+        )} />
+
+        {/* this is the search book screen */}
+        <Route path="/search_books" render={() => (          
+          <SearchBooks /> 
+        )}/>       
       </div>
     );
   }
