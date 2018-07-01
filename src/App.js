@@ -30,7 +30,7 @@ class ReadingBooks extends Component {
   //this function will update book base on its 'shelfName'
   changeShelf = (targetBook, targetShelf) => {
     BooksAPI.update(targetBook, targetShelf).then(() => {
-      targetBook.shelf = targetShelf;
+      targetBook.shelf = targetShelf
       //after change targetBook's shelfName, update its state
       this.setState({
         //put the book to the end
@@ -75,7 +75,7 @@ class ReadingBooks extends Component {
 
         {/* this is the search book screen */}
         <Route path="/search_books" render={() => (          
-          <SearchBooks /> 
+          <SearchBooks availableBooks={this.state.books} changeShelf={this.changeShelf}/> 
         )}/>       
       </div>
     );
