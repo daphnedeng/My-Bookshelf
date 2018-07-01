@@ -13,7 +13,7 @@ class Bookshelf extends Component {
         /*equivalent of const changeShelf = this.props.changeShelf. const books = this.props.books
         books is an array */
         const { books, changeShelf } = this.props;
-
+                
         return (
             <section>                
                 {books.map((book) =>

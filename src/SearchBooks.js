@@ -6,44 +6,45 @@ import PropTypes from "prop-types";
 
 class SearchBooks extends Component {
     static propTypes = {
-        changeShelf: PropTypes.func.isRequired,
-        availableBooks: PropTypes.array.isRequired
-      }
+        availableBooks: PropTypes.array.isRequired,
+        changeShelf: PropTypes.func.isRequired
+    }
 
     state = {
         query: '',
-        searchResults: []
+        searchResults: [],
+        noResult: false
     }
 
-    searchBooks = (query, availableBooks) => {
-        BooksAPI.search(query, 20).then(books => {
-            //if there's no error
-            if (!books.error) {
-                books.forEach(book => {
-                    availableBooks.forEach(item => {
-                        //update the shelf
-                        if (item.id === book.id) {
-                            book.shelf = item.shelf
-                        }
-                    })
-                })
-                //shows the state of books
-                this.setState( {searchResults: books })
-            } else {
-                this.setState( {searchResults: [] })
-            }            
-        }).catch((e) => {
-            this.setState( {searchResults: [] })
+    findBooks = (event) => {
+        const query = event.target.value.trim()
+        this.setState({ 
+            query: query 
         })
-    }
 
-    updateQuery = (query, availableBooks) => {
-        this.setState({
-            query: query
-        }, this.searchBooks(query, availableBooks))
-    }
+        if (query) {
+            //if user input then run the search
+            BooksAPI.search(query).then(availableBooks => {
+                //if everything works find, show the books
+                if (!availableBooks.error) {
+                    this.setState({
+                        searchResults: availableBooks,
+                        noResult: false
+                    })
+                }
+                //otherwise, show an empty page and set noResult to true
+                else {
+                    this.setState({
+                        searchResults: [],
+                        noResult: true
+                    })
+                }
+            })
+        }
+    } 
 
-    updateShelf = (targetBook, targetShelf) => {
+    //add the book to my-bookshelf
+    changeShelf = (targetBook, targetShelf) => {
         targetBook.shelf = targetShelf
         this.setState(state => {
             this.setState({searchResults: state.searchResults})
@@ -51,23 +52,31 @@ class SearchBooks extends Component {
     }
 
     render() {
-        const { query, searchResults } = this.state
-        const { changeShelf, availableBooks } = this.props
-        console.log(query)
+        const { changeShelf, books, bookshelf } = this.props;  
+        
         return(
-            <section>
+           <section>
+
                 <header className="search-header">
                     <Link className="close-search" to="/">Home</Link>
-                    <input type="text" placeholder="Search by Title or Author" value={query} onChange={(e) => this.updateQuery(e.target.value, availableBooks)}/>
+                    <input type="text" placeholder="Search by Title or Author" value={this.state.query} onChange={this.findBooks} />
                 </header>
 
-                {searchResults && searchResults.map(book => (
+                {/* because noResult = true, show this mesg */}
+                {this.state.noResult && (
+                    <div>
+                        <h3>Sorry, We can't find any books that match your search at this moment.</h3>
+                    </div>
+                )}
+
+                {this.state.searchResults.map(book => (
                     <Books key={book.id} book={book} changeShelf={changeShelf} />
-                ))}                
-            </section>
+                ))}
+
+           </section>       
+                                                         
         )
     }
 }
 
 export default SearchBooks;
-

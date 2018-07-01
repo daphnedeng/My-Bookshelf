@@ -40,6 +40,7 @@ class ReadingBooks extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         {/* this is the bookshelf screen */}
@@ -75,7 +76,7 @@ class ReadingBooks extends Component {
 
         {/* this is the search book screen */}
         <Route path="/search_books" render={() => (          
-          <SearchBooks availableBooks={this.state.books} changeShelf={this.changeShelf}/> 
+          <SearchBooks changeShelf={this.changeShelf} books={this.state.availableBooks}/> 
         )}/>       
       </div>
     );
