@@ -49,15 +49,15 @@ class ReadingBooks extends Component {
             <header className="App-header">
               <nav>
                 <h1>My Bookshelf</h1> 
-                <Link to="search_books" className="search-link">Search Books</Link>
+                <Link to="search_books" className="search-link cool-link">Search Books</Link>
               </nav>
             </header>
 
             <Tabs>
               <TabList className="shelf-titles">
-                <Tab className="book-shelf">Reading</Tab>
-                <Tab className="book-shelf">Want To Read</Tab>
-                <Tab className="book-shelf">Read</Tab>
+                <Tab className="book-shelf cool-link">Reading</Tab>
+                <Tab className="book-shelf cool-link">Want To Read</Tab>
+                <Tab className="book-shelf cool-link">Read</Tab>
               </TabList>
 
               <TabPanel>

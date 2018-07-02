@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Link, Route } from "react-router-dom";
 import Books from './Books';
+import BookShelf from './BookShelf';
 import PropTypes from "prop-types";
 
 class SearchBooks extends Component {
@@ -52,29 +53,28 @@ class SearchBooks extends Component {
     }
 
     render() {
-        const { changeShelf, books, bookshelf } = this.props;  
-        
+        console.log(this.props.bookShelf)
+        const { changeShelf } = this.props; 
         return(
-           <section>
-
+           <section className="search-page">
                 <header className="search-header">
-                    <Link className="close-search" to="/">Home</Link>
-                    <input type="text" placeholder="Search by Title or Author" value={this.state.query} onChange={this.findBooks} />
+                    <nav>                                       
+                        <input type="text" placeholder="Search by Title or Author" value={this.state.query} onChange={this.findBooks} />
+                        <Link className="cool-link back-to-home" to="/">Back to Home</Link>
+                    </nav> 
                 </header>
 
                 {/* because noResult = true, show this mesg */}
                 {this.state.noResult && (
                     <div>
-                        <h3>Sorry, We can't find any books that match your search at this moment.</h3>
+                        <h3>The book you are looking for is not in stock yet.</h3>
                     </div>
                 )}
 
                 {this.state.searchResults.map(book => (
                     <Books key={book.id} book={book} changeShelf={changeShelf} />
                 ))}
-
-           </section>       
-                                                         
+           </section>                                                               
         )
     }
 }
