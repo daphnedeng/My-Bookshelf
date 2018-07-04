@@ -1,4 +1,4 @@
-## Run this project:
+## Run ths project:
 1. Clone this git repository
 ```
 git clone https://github.com/daphnedeng/My-Bookshelf.git

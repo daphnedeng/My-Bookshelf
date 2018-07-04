@@ -17,7 +17,7 @@ class ReadingBooks extends Component {
     BooksAPI.getAll().then((books) => {
       // setState changes the state of books
       this.setState({
-        books
+        books: books
       })
     })
   }
@@ -75,8 +75,9 @@ class ReadingBooks extends Component {
         )} />
 
         {/* this is the search book screen */}
-        <Route path="/search_books" render={() => (          
-          <SearchBooks changeShelf={this.changeShelf} books={this.state.availableBooks}/> 
+        <Route path="/search_books" render={() => (
+          // the state of books has been update, so it should use this.state.books      
+          <SearchBooks changeShelf={this.changeShelf} books={this.state.books}/> 
         )}/>       
       </div>
     );

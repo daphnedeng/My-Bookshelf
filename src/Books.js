@@ -20,21 +20,23 @@ class Books extends Component {
 
         return(
             <div className="book-container">
-                <div className="book-details">                
+                <div className="book-cover">                
                 {/* props: pass API data into component */}
                     <img src={coverImg} alt={`book cover of ${title}`}/>
+                </div>
+                <div className="book-info">
                     <p>Book Title: {title}. {book.subtitle}</p>
                     <p>Written By: {authors}</p>
-                </div> 
 
-                {/* onChange function invokes, which changes book shelfName base on the string of value='string'. This function lives in App.js */}
-                <select value={book.shelf ? book.shelf: "none"} onChange={(e) => changeShelf(book, e.target.value)}>
-                    <option value="move" disabled>Move to...</option>
-                    <option value="currentlyReading">Reading</option>
-                    <option value="wantToRead">Want to Read</option>
-                    <option value="read">Read</option>
-                    <option value="none">None</option>
-                </select>
+                    {/* onChange function invokes, which changes book shelfName base on the string of value='string'. This function lives in App.js */}
+                    <select value={book.shelf ? book.shelf: "none"} onChange={(e) => changeShelf(book, e.target.value)}>
+                        <option value="move" disabled>Move to...</option>
+                        <option value="currentlyReading">Reading</option>
+                        <option value="wantToRead">Want to Read</option>
+                        <option value="read">Read</option>
+                        <option value="none">None</option>
+                    </select>
+                </div>
             </div>
         )
     }

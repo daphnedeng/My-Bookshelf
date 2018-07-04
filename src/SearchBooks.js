@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Link, Route } from "react-router-dom";
 import Books from './Books';
-import BookShelf from './BookShelf';
 import PropTypes from "prop-types";
 
 class SearchBooks extends Component {
@@ -26,12 +25,21 @@ class SearchBooks extends Component {
         if (query) {
             //if user input then run the search
             BooksAPI.search(query).then(availableBooks => {
-                //if everything works find, show the books
-                if (!availableBooks.error) {
+                //if everything works find
+                if (!availableBooks.error) { 
+                    //compare their shelfName. If already exist then show the existing shelfName
+                    availableBooks.forEach((newbook) => {
+                        this.props.books.forEach((existbook) => {
+                            if (existbook.id === newbook.id) {
+                                newbook.shelf = existbook.shelf
+                            }
+                        })
+                    }) 
+                    //no error, show the books                  
                     this.setState({
                         searchResults: availableBooks,
                         noResult: false
-                    })
+                    })                    
                 }
                 //otherwise, show an empty page and set noResult to true
                 else {
@@ -42,18 +50,10 @@ class SearchBooks extends Component {
                 }
             })
         }
-    } 
-
-    //add the book to my-bookshelf
-    changeShelf = (targetBook, targetShelf) => {
-        targetBook.shelf = targetShelf
-        this.setState(state => {
-            this.setState({searchResults: state.searchResults})
-        })
     }
 
     render() {
-        console.log(this.props.bookShelf)
+        //console.log(this.props.books)
         const { changeShelf } = this.props; 
         return(
            <section className="search-page">
@@ -67,7 +67,7 @@ class SearchBooks extends Component {
                 {/* because noResult = true, show this mesg */}
                 {this.state.noResult && (
                     <div>
-                        <h3>The book you are looking for is not in stock yet.</h3>
+                        <h3>{this.state.query} is not in stock yet.</h3>
                     </div>
                 )}
 
