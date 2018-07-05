@@ -15,7 +15,7 @@ class Bookshelf extends Component {
         const { books, changeShelf } = this.props;
                 
         return (
-            <section>                
+            <section className="book-shelf-container">                
                 {books.map((book) =>
                     //.map() will render all books, for each book in books, showing a specific book info
                     <Books key={book.id} book={book} changeShelf={changeShelf} />

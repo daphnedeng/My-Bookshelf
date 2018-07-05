@@ -76,7 +76,7 @@ class ReadingBooks extends Component {
 
         {/* this is the search book screen */}
         <Route path="/search_books" render={() => (
-          // the state of books has been update, so it should use this.state.books      
+          //the state of books has been update, so use this.state.books      
           <SearchBooks changeShelf={this.changeShelf} books={this.state.books}/> 
         )}/>       
       </div>

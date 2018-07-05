@@ -27,7 +27,7 @@ class SearchBooks extends Component {
             BooksAPI.search(query).then(availableBooks => {
                 //if everything works find
                 if (!availableBooks.error) { 
-                    //compare their shelfName. If already exist then show the existing shelfName
+                    //compare book's shelfName. If already exists then show the existing shelfName
                     availableBooks.forEach((newbook) => {
                         this.props.books.forEach((existbook) => {
                             if (existbook.id === newbook.id) {
@@ -53,7 +53,6 @@ class SearchBooks extends Component {
     }
 
     render() {
-        //console.log(this.props.books)
         const { changeShelf } = this.props; 
         return(
            <section className="search-page">
@@ -71,9 +70,11 @@ class SearchBooks extends Component {
                     </div>
                 )}
 
+                <div className="book-shelf-container">
                 {this.state.searchResults.map(book => (
                     <Books key={book.id} book={book} changeShelf={changeShelf} />
                 ))}
+                </div>
            </section>                                                               
         )
     }

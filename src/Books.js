@@ -25,8 +25,8 @@ class Books extends Component {
                     <img src={coverImg} alt={`book cover of ${title}`}/>
                 </div>
                 <div className="book-info">
-                    <p>Book Title: {title}. {book.subtitle}</p>
-                    <p>Written By: {authors}</p>
+                    <p className="book-title">{title}. {book.subtitle}</p>
+                    <p className="book-author">Written By: {authors}</p>
 
                     {/* onChange function invokes, which changes book shelfName base on the string of value='string'. This function lives in App.js */}
                     <select value={book.shelf ? book.shelf: "none"} onChange={(e) => changeShelf(book, e.target.value)}>

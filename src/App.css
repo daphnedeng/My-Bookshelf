@@ -61,16 +61,18 @@ header {
 }
 
 .book-container {
+  display: flex;
   width: 80%;
+  max-width: 480px;
   height: 100%;
-  margin: 0 auto;
-  margin-bottom: 30px;
+  margin: 0 10px 30px;
   border: 1px solid transparent;
   border-radius: 10px;
-  padding: 25px;
+  padding: 30px 25px;
   box-shadow: 0px 14px 50px 1px rgba(189,193,212,1);
   -webkit-box-shadow: 0px 14px 50px 1px rgba(189,193,212,1);
-  -moz-box-shadow: 0px 14px 50px 1px rgba(189,193,212,1);  
+  -moz-box-shadow: 0px 14px 50px 1px rgba(189,193,212,1);
+  background: rgb(249, 252, 255);  
 }
 
 .book-shelf {
@@ -78,6 +80,42 @@ header {
   float: left;
   width: 33%;
   line-height: 5;
+}
+
+.book-shelf-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-cover, .book-info {
+  width: 50%;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title, .book-author{
+  text-align: left;
+}
+
+.book-title {
+  font-size: 20px;
+  margin-top: 0;
+  flex: 1 0 auto;
+}
+
+.book-author {
+  color: rgb(97, 106, 114);
+  margin-bottom: 30px;
+}
+
+.book-info select {
+  font-size: 18px;
+  border-radius: 50px;
+  height: 40px;
+  padding: 0 25px;
 }
 
 /* ***
