@@ -13,11 +13,11 @@ class ReadingBooks extends Component {
   }
 
   //render all books
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
+  async componentDidMount() {
+    await BooksAPI.getAll().then((books) => {
       // setState changes the state of books
       this.setState({
-        books: books
+        books
       })
     })
   }
@@ -49,7 +49,7 @@ class ReadingBooks extends Component {
             <header className="App-header">
               <nav>
                 <h1>My Bookshelf</h1> 
-                <Link to="search_books" className="search-link cool-link">Search Books</Link>
+                <Link to="search" className="search-link cool-link">Search Books</Link>
               </nav>
             </header>
 
@@ -75,7 +75,7 @@ class ReadingBooks extends Component {
         )} />
 
         {/* this is the search book screen */}
-        <Route path="/search_books" render={() => (
+        <Route path="/search" render={() => (
           //the state of books has been update, so use this.state.books      
           <SearchBooks changeShelf={this.changeShelf} books={this.state.books}/> 
         )}/>       

@@ -16,7 +16,7 @@ class Books extends Component {
         //add fallbacks for missing cover images and title to prevent error
         const coverImg = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : noCover
         const title = book.title ? book.title : "No title available"
-        const authors = book.authors ? book.authors : "Anonymous"
+        const authors = book.authors ? book.authors.join(', ') : "Anonymous"
 
         return(
             <div className="book-container">
